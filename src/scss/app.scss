@@ -1,2 +1,8 @@
 // Import all of Bootstrap's CSS
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 @import '~bootstrap/scss/bootstrap';
+@import './default';
+@import './header';
+@import './main';
+@import './card';
+@import './modal';
