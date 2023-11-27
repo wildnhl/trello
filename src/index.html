@@ -22,35 +22,39 @@
           <div class="main-wrapper">
             <section class="card-group" id="todo">
               <div class="card-group__header">
-                <h2 class="card-group__title">TODO:</h2>
+                <h2 class="card-group__title">Todo:</h2>
                 <p class="card-group__count">2</p>
               </div>
-              <!-- card group body -->
+              <!--todo card group body -->
               <div class="card-group__body" id="todo-content"></div>
-              <!-- card group body -->
+              <!--todo card group body -->
               <button
                 id="btn-add"
                 class="card-group__button btn btn-primary"
                 type="button"
                 data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
+                data-bs-target="#modal-add"
               >
                 Add button
               </button>
             </section>
             <section class="card-group" id="inprogress">
               <div class="card-group__header">
-                <h2 class="card-group__title">TODO:</h2>
+                <h2 class="card-group__title">In progress:</h2>
                 <p class="card-group__count">2</p>
               </div>
-              <div class="card-group__body"></div>
+              <!--inprogress card group body -->
+              <div class="card-group__body" id="inprogress-content"></div>
+              <!--inprogress card group body -->
             </section>
             <section class="card-group" id="done">
               <div class="card-group__header">
-                <h2 class="card-group__title">TODO:</h2>
+                <h2 class="card-group__title">Done:</h2>
                 <p class="card-group__count">2</p>
               </div>
-              <div class="card-group__body"></div>
+              <!--done card group body -->
+              <div class="card-group__body" id="done-content"></div>
+              <!--done card group body -->
               <button class="card-group__button btn btn-danger">
                 Delete all
               </button>
@@ -60,10 +64,11 @@
       </main>
       <footer></footer>
     </div>
-    <!-- Modal -->
+
+    <!-- Add Modal -->
     <div
       class="modal fade"
-      id="staticBackdrop"
+      id="modal-add"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
@@ -96,11 +101,6 @@
               id="description"
               placeholder="Description"
             ></textarea>
-            <!-- <select class="form-select w-50" name="place" id="place">
-              <option value="gg">gg</option>
-              <option value="gg2">gg2</option>
-              <option value="gg3">gg3</option>
-            </select> -->
           </div>
           <div class="modal-footer d-flex flex-nowrap">
             <button
@@ -111,10 +111,70 @@
               Close
             </button>
             <button type="submit" class="btn btn-primary" aria-label="Close">
-              Understood
+              Add
             </button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <!--Edit Modal  -->
+    <div
+      class="modal fade"
+      id="editModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Edit modal
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              placeholder="Title"
+              id="title-todo-edit"
+            />
+            <textarea
+              type="text"
+              class="form-control"
+              name="description"
+              id="description-edit"
+              placeholder="Description"
+            ></textarea>
+            <select class="form-select" name="fromto" id="select-place">
+              <option value="todo">Todo</option>
+              <option value="inprogress">In progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="apply-edit-btn">
+              Apply
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </body>

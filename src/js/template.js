@@ -1,4 +1,4 @@
-function buildTemplateCard({ id, text, description, createdAt }) {
+function buildTemplateCard({ id, title, description, createdAt }) {
   // let isChecked = '';
   // let background = '';
   // let throughLine = '';
@@ -8,19 +8,23 @@ function buildTemplateCard({ id, text, description, createdAt }) {
   //   background = 'bg-copmlete';
   //   throughLine = 'task-done';
   // }
+  let none = '';
+  if (description.trim() === '') {
+    none = `style = 'display: none'`;
+  }
 
   return `
-    <div class='card bg-success'>
-      <h3 class='card__title'>${text}</h3>
-      <p class='card__description'>${description}</p>
-      <select class='form-select' name='fromto' id='fromto'></select>
-      <button id='btn-edit' class='btn btn-primary'>
+    <div class='card bg-success' id=${id}>
+      <h3 class='card__title'>${title}</h3>
+      <p class='card__description' ${none} >${description}</p>
+      <button class='btn btn-primary' data-id='btn-edit'
+      data-bs-toggle="modal" data-bs-target="#editModal">
         Edit
       </button>
-      <button id='btn-delete' class='btn btn-danger'>
+      <button class='btn btn-danger data-id='btn-delete'>
         Delete
       </button>
-    </div>;
+    </div>
     `;
 }
 

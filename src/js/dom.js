@@ -2,7 +2,7 @@ function $(element) {
   return document.querySelector(element);
 }
 function $$(element) {
-  return document.querySelector(element);
+  return document.querySelectorAll(element);
 }
 
 export { $, $$ };
