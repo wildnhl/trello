@@ -21,7 +21,7 @@ function buildTemplateCard({ id, title, description, createdAt }) {
       data-bs-toggle="modal" data-bs-target="#editModal">
         Edit
       </button>
-      <button class='btn btn-danger data-id='btn-delete'>
+      <button class='btn btn-danger' data-id='btn-delete'>
         Delete
       </button>
     </div>
