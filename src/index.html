@@ -23,7 +23,7 @@
             <section class="card-group" id="todo">
               <div class="card-group__header">
                 <h2 class="card-group__title">Todo:</h2>
-                <p class="card-group__count">2</p>
+                <p class="card-group__count" id="todo-count">2</p>
               </div>
               <!--todo card group body -->
               <div class="card-group__body" id="todo-content"></div>
@@ -41,7 +41,7 @@
             <section class="card-group" id="inprogress">
               <div class="card-group__header">
                 <h2 class="card-group__title">In progress:</h2>
-                <p class="card-group__count">2</p>
+                <p class="card-group__count" id="inprogress-count">2</p>
               </div>
               <!--inprogress card group body -->
               <div class="card-group__body" id="inprogress-content"></div>
@@ -50,7 +50,7 @@
             <section class="card-group" id="done">
               <div class="card-group__header">
                 <h2 class="card-group__title">Done:</h2>
-                <p class="card-group__count">2</p>
+                <p class="card-group__count" id="done-count">2</p>
               </div>
               <!--done card group body -->
               <div class="card-group__body" id="done-content"></div>
@@ -104,6 +104,9 @@
               id="description"
               placeholder="Description"
             ></textarea>
+            <select class="form-select" name="performer" id="select-performer">
+              <option>Choose performer</option>
+            </select>
           </div>
           <div class="modal-footer d-flex flex-nowrap">
             <button

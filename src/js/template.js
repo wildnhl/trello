@@ -3,12 +3,8 @@ function buildTemplateCard({ id, title, description, createdAt, place }) {
   let selectInProgress = '';
   let selectDone = '';
   let background = '';
-  // if (checked) {
-  //   isChecked = 'checked';
-  //   background = 'bg-copmlete';
-  //   throughLine = 'task-done';
-  // }
   let none = '';
+
   if (description.trim() === '') {
     none = `style = 'display: none'`;
   }
@@ -32,21 +28,21 @@ function buildTemplateCard({ id, title, description, createdAt, place }) {
     <div class="card ${background}" id="${id}">
       <h3 class="card__title">${title}</h3>
       <p class="card__description" ${none}>${description}</p>
+      <select class="form-select" name="fromto" data-id="select-place">
+      <option value="todo" ${selectTodo}>Todo</option>
+      <option value="inprogress" ${selectInProgress}>In progress</option>
+      <option value="done" ${selectDone}>Done</option>
+      </select>
       <div class="d-flex gap-4">
-        <select class="form-select" name="fromto" data-id="select-place">
-          <option value="todo" ${selectTodo}>Todo</option>
-          <option value="inprogress" ${selectInProgress}>In progress</option>
-          <option value="done" ${selectDone}>Done</option>
-        </select>
         <button
-          class="btn btn-primary"
+          class="btn btn-primary w-100"
           data-id="btn-edit"
           data-bs-toggle="modal"
           data-bs-target="#editModal"
         >
           Edit
         </button>
-        <button class="btn btn-danger" data-id="btn-delete">Delete</button>
+        <button class="btn btn-danger w-100" data-id="btn-delete">Delete</button>
       </div>
     </div>
     `;

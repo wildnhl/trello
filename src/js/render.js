@@ -1,6 +1,6 @@
 import { buildTemplateCard } from './template';
 import { dataTasks } from './app';
-import { $, $$ } from './dom';
+import { $, $$, showAmountTodoCardEveryGroups } from './dom';
 function render(array) {
   const cloneDataTasks = structuredClone(array);
   cloneDataTasks.reverse();
@@ -29,6 +29,7 @@ function render(array) {
   todoContentElement.innerHTML = htmlTodo;
   inprogressContentElement.innerHTML = htmlInProgress;
   doneContentElement.innerHTML = htmlDone;
+  showAmountTodoCardEveryGroups();
 }
 
 export { render };

@@ -3,6 +3,7 @@ import { $, $$ } from './dom';
 import * as bootstrap from 'bootstrap';
 import { render } from './render.js';
 import { getData, setData } from './localstorage.js';
+import { requestUsersList } from './requests.js';
 
 const modalAdd = new bootstrap.Modal('#modal-add', {});
 function handleSubmitFormAddElement(event) {
@@ -16,7 +17,9 @@ function handleSubmitFormAddElement(event) {
     formData.append('createAt', new Date());
     formData.append('id', Date.now());
     for (let [key, value] of formData.entries()) {
-      login[key] = value;
+      if (value !== 'Choose performer') {
+        login[key] = value;
+      }
     }
     dataTasks.push(login);
     modalAdd.hide();

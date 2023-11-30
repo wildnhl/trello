@@ -10,6 +10,8 @@ import {
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
 } from './handlers.js';
+import { requestUsersList } from './requests.js';
+requestUsersList('https://jsonplaceholder.typicode.com/users');
 
 let dataTasks;
 if (getData('trello-todos') != null) {
