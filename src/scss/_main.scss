@@ -10,29 +10,3 @@ main {
   gap: 30px;
   flex: 1 1 auto;
 }
-
-.card-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 10px;
-}
-
-.card-group__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-group__count {
-  font-size: 24px;
-}
-
-.card-group__button {
-  margin-top: auto;
-}
-
-.container--height-strech {
-  display: flex;
-  flex-direction: column;
-}

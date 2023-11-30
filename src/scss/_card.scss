@@ -3,8 +3,52 @@
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-  color: white;
   p {
     font-size: 20px;
   }
+}
+
+.card-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+}
+
+.card-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-group__count {
+  font-size: 24px;
+}
+
+.card-group__button {
+  margin-top: auto;
+}
+
+.container--height-strech {
+  display: flex;
+  flex-direction: column;
+}
+
+.bg-todo {
+  background: #5bd9a3;
+}
+
+.bg-inprogress {
+  background: #d8ddd7;
+}
+
+.bg-done {
+  background: #5bc3d9;
 }
