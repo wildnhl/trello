@@ -1,5 +1,4 @@
 import { buildTemplateCard } from './template';
-import { dataTasks } from './app';
 import { $, $$, showAmountTodoCardEveryGroups } from './dom';
 function render(array) {
   const cloneDataTasks = structuredClone(array);

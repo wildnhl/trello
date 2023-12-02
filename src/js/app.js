@@ -11,7 +11,6 @@ import {
   handleClickSelectElement,
 } from './handlers.js';
 import { requestUsersList } from './requests.js';
-requestUsersList('https://jsonplaceholder.typicode.com/users');
 
 let dataTasks;
 if (getData('trello-todos') != null) {
@@ -20,6 +19,8 @@ if (getData('trello-todos') != null) {
 } else {
   dataTasks = [];
 }
+
+requestUsersList('https://jsonplaceholder.typicode.com/users');
 
 const formModalAddElement = $('#form-modal-add');
 formModalAddElement.addEventListener('submit', handleSubmitFormAddElement);
@@ -39,5 +40,4 @@ deleteAllDoneBtnElement.addEventListener(
   'click',
   handleClickDeleteAllDoneCardBtn
 );
-
 export { dataTasks };

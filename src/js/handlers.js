@@ -3,30 +3,31 @@ import { $, $$ } from './dom';
 import * as bootstrap from 'bootstrap';
 import { render } from './render.js';
 import { getData, setData } from './localstorage.js';
-import { requestUsersList } from './requests.js';
 
 const modalAdd = new bootstrap.Modal('#modal-add', {});
+
 function handleSubmitFormAddElement(event) {
   {
     event.preventDefault();
 
-    const login = {
-      place: 'todo',
-    };
+    const login = {};
     const formData = new FormData($('#form-modal-add'));
-    formData.append('createAt', new Date());
+    formData.append('createdAt', new Date().toLocaleString());
     formData.append('id', Date.now());
+    formData.append('place', 'todo');
     for (let [key, value] of formData.entries()) {
-      if (value !== 'Choose performer') {
-        login[key] = value;
-      }
+      login[key] = value;
     }
-    dataTasks.push(login);
-    modalAdd.hide();
-    setData('trello-todos', dataTasks);
-    render(dataTasks);
-    $('#title-todo').value = '';
-    $('#description').value = '';
+    if (login.performer === '' || login.title.trim() === '') {
+      alert('Need to choose title and performer');
+    } else {
+      modalAdd.hide();
+      dataTasks.push(login);
+      setData('trello-todos', dataTasks);
+      render(dataTasks);
+      $('#title-todo').value = '';
+      $('#description').value = '';
+    }
   }
 }
 
@@ -37,7 +38,17 @@ function handleClickEditCard(event) {
     const element = dataTasks.find((item) => item.id === id);
     $('#title-todo-edit').value = element.title;
     $('#description-edit').value = element.description;
+    $('.select-edit').value = element.performer;
   }
+}
+
+function handleClickApplyEditCard() {
+  const element = dataTasks.find((item) => item.id === id);
+  element.title = $('#title-todo-edit').value;
+  element.description = $('#description-edit').value;
+  element.performer = $('.select-edit').value;
+  setData('trello-todos', dataTasks);
+  render(dataTasks);
 }
 
 function handleClickDeleteCard(event) {
@@ -50,22 +61,11 @@ function handleClickDeleteCard(event) {
   }
 }
 
-const modalEdit = new bootstrap.Modal('#editModal', {});
-function handleClickApplyEditCard() {
-  const element = dataTasks.find((item) => item.id === id);
-  element.title = $('#title-todo-edit').value;
-  element.description = $('#description-edit').value;
-  modalEdit.hide();
-  setData('trello-todos', dataTasks);
-  render(dataTasks);
-}
-
 function handleClickDeleteAllDoneCardBtn() {
   setData(
     'trello-todos',
     dataTasks.filter((item) => item.place !== 'done')
   );
-
   render(getData('trello-todos'));
 }
 

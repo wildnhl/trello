@@ -1,12 +1,11 @@
 main {
-  flex: 1 1 auto;
-  display: flex;
+  overflow: auto;
+  flex-grow: 1;
+}
+.main-wrapper {
+  height: 100%;
 }
 
-.main-wrapper {
-  display: flex;
-  padding: 0 20px;
-  margin-top: 50px;
-  gap: 30px;
-  flex: 1 1 auto;
+.form-select {
+  width: fit-content;
 }

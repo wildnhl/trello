@@ -10,62 +10,80 @@
   <body>
     <div id="root">
       <header>
-        <div class="container">
+        <div class="container-fluid">
           <section class="header">
             <h1>Trello</h1>
             <div class="clock">12:23</div>
           </section>
         </div>
       </header>
-      <main>
-        <div class="container container--height-strech">
-          <div class="main-wrapper">
-            <section class="card-group" id="todo">
-              <div class="card-group__header">
-                <h2 class="card-group__title">Todo:</h2>
-                <p class="card-group__count" id="todo-count">2</p>
-              </div>
-              <!--todo card group body -->
-              <div class="card-group__body" id="todo-content"></div>
-              <!--todo card group body -->
-              <button
-                id="btn-add"
-                class="card-group__button btn btn-primary"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-add"
-              >
-                Add button
-              </button>
-            </section>
-            <section class="card-group" id="inprogress">
-              <div class="card-group__header">
-                <h2 class="card-group__title">In progress:</h2>
-                <p class="card-group__count" id="inprogress-count">2</p>
-              </div>
-              <!--inprogress card group body -->
-              <div class="card-group__body" id="inprogress-content"></div>
-              <!--inprogress card group body -->
-            </section>
-            <section class="card-group" id="done">
-              <div class="card-group__header">
-                <h2 class="card-group__title">Done:</h2>
-                <p class="card-group__count" id="done-count">2</p>
-              </div>
-              <!--done card group body -->
-              <div class="card-group__body" id="done-content"></div>
-              <!--done card group body -->
-              <button
-                class="card-group__button btn btn-danger"
-                id="deleteAllDone"
-              >
-                Delete all Done
-              </button>
-            </section>
-          </div>
+      <main class="container-fluid d-flex flex-column">
+        <div class="main-wrapper d-flex gap-4 p-3 pb-0">
+          <section
+            class="card-group d-flex flex-column w-25 p-2 flex-grow-1 gap-2"
+            id="todo"
+          >
+            <div
+              class="card-group__header d-flex align-items-center gap-4 justify-content-center p-2"
+            >
+              <h3 class="card-group__title">Todo:</h3>
+              <p class="card-group__count" id="todo-count">0</p>
+            </div>
+            <!--todo card group body -->
+            <div
+              class="card-group__body d-flex flex-column gap-2"
+              id="todo-content"
+            ></div>
+            <!--todo card group body -->
+            <button
+              id="btn-add"
+              class="card-group__button btn bg-todo"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-add"
+            >
+              Add todo
+            </button>
+          </section>
+          <section
+            class="card-group d-flex flex-column w-25 p-2 flex-grow-1 gap-2"
+            id="inprogress"
+          >
+            <div
+              class="card-group__header d-flex align-items-center gap-4 justify-content-center p-2"
+            >
+              <h3 class="card-group__title">In progress:</h3>
+              <p class="card-group__count" id="inprogress-count">0</p>
+            </div>
+            <!--inprogress card group body -->
+            <div
+              class="card-group__body d-flex flex-column gap-2"
+              id="inprogress-content"
+            ></div>
+            <!--inprogress card group body -->
+          </section>
+          <section
+            class="card-group d-flex flex-column w-25 p-2 flex-grow-1 gap-2"
+            id="done"
+          >
+            <div
+              class="card-group__header d-flex align-items-center gap-4 justify-content-center p-2"
+            >
+              <h3 class="card-group__title">Done:</h3>
+              <p class="card-group__count" id="done-count">0</p>
+            </div>
+            <!--done card group body -->
+            <div
+              class="card-group__body d-flex flex-column gap-2"
+              id="done-content"
+            ></div>
+            <!--done card group body -->
+            <button class="card-group__button btn bg-done" id="deleteAllDone">
+              Delete all Done
+            </button>
+          </section>
         </div>
       </main>
-      <footer></footer>
     </div>
 
     <!-- Add Modal -->
@@ -105,7 +123,7 @@
               placeholder="Description"
             ></textarea>
             <select class="form-select" name="performer" id="select-performer">
-              <option>Choose performer</option>
+              <option value="">Choose performer</option>
             </select>
           </div>
           <div class="modal-footer d-flex flex-nowrap">
@@ -162,6 +180,13 @@
               id="description-edit"
               placeholder="Description"
             ></textarea>
+            <select
+              class="form-select select-edit"
+              name="performer"
+              id="select-performer"
+            >
+              <option value="">Choose performer</option>
+            </select>
           </div>
           <div class="modal-footer">
             <button
@@ -171,7 +196,12 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="apply-edit-btn">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              id="apply-edit-btn"
+            >
               Apply
             </button>
           </div>

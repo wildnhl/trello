@@ -4,9 +4,9 @@ body {
 }
 #root {
   display: flex;
-  flex-direction: column;
-  min-height: 100%;
+  height: 100vh;
   background: #e1d4c9;
+  flex-direction: column;
   padding: 20px 0;
 }
 
@@ -14,6 +14,7 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
+  transition: all 0.3s;
 }
 
 h6,
@@ -36,6 +37,6 @@ p {
   margin: 0;
 }
 
-.container {
-  max-width: 1800px;
+select {
+  cursor: pointer;
 }

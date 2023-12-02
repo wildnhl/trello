@@ -3,29 +3,16 @@
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-  p {
-    font-size: 20px;
-  }
 }
 
 .card-group__body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  overflow: auto;
 }
 
 .card-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 10px;
-  gap: 10px;
-}
-
-.card-group__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  border-radius: 15px;
+  background: #ffffff90;
+  flex-wrap: nowrap;
 }
 
 .card-group__count {
@@ -34,11 +21,21 @@
 
 .card-group__button {
   margin-top: auto;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.container--height-strech {
-  display: flex;
-  flex-direction: column;
+.card__title {
+  background-color: white;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.card__description {
+  background-color: white;
+  padding: 2px;
+  border-radius: 5px;
 }
 
 .bg-todo {
@@ -51,4 +48,8 @@
 
 .bg-done {
   background: #5bc3d9;
+}
+
+.card-date {
+  font-size: 14px;
 }
