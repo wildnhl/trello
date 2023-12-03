@@ -1,10 +1,3 @@
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 10px;
-}
-
 .card-group__body {
   overflow: auto;
 }
@@ -21,21 +14,22 @@
 
 .card-group__button {
   margin-top: auto;
+
   &:hover {
     opacity: 0.8;
   }
 }
 
 .card__title {
-  background-color: white;
-  padding: 2px;
-  border-radius: 5px;
+  font-size: 22px;
 }
 
-.card__description {
+.card__description,
+.card__title {
   background-color: white;
-  padding: 2px;
+  padding: 2px 5px;
   border-radius: 5px;
+  padding-left: 5px;
 }
 
 .bg-todo {

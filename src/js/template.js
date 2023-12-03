@@ -42,13 +42,15 @@ function buildTemplateCard({
       </select>
         <button
           class="btn btn-primary btn-sm"
+          type="button"
           data-id="btn-edit"
           data-bs-toggle="modal"
           data-bs-target="#editModal"
         >
           Edit
         </button>
-        <button class="btn btn-danger btn-sm" data-id="btn-delete">Delete</button>
+        <button class="btn btn-danger btn-sm" data-id="btn-delete" data-bs-toggle="modal"
+              data-bs-target="#deleteSpecModal">Delete</button>
       </div>
       <div class="d-flex justify-content-between gap-2">
         <h3 class="card-date">Person: ${performer}</h3>
@@ -57,5 +59,4 @@ function buildTemplateCard({
     </div>
     `;
 }
-
 export { buildTemplateCard };
