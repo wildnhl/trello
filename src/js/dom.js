@@ -20,12 +20,9 @@ function showAmountTodoCardEveryGroups() {
 
 function showClock() {
   const now = new Date();
-  const hours = now.getHours() + '';
-  const minutes = now.getMinutes() + '';
-  const seconds = now.getSeconds() + '';
-  $('.clock').textContent = `${hours.padStart(2, '0')}:${minutes.padStart(
-    2,
-    '0'
-  )}:${seconds.padStart(2, '0')}`;
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  $('.clock').textContent = `${hours}:${minutes}:${seconds}`;
 }
 export { $, $$, showAmountTodoCardEveryGroups, showClock };
