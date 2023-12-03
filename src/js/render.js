@@ -1,33 +1,26 @@
 import { buildTemplateCard } from './template';
 import { $, $$, showAmountTodoCardEveryGroups } from './dom';
 function render(array) {
-  const cloneDataTasks = structuredClone(array);
-  cloneDataTasks.reverse();
+  const cloneDataTasks = structuredClone(array).reverse();
 
   let htmlTodo = '';
   let htmlInProgress = '';
   let htmlDone = '';
 
-  const todoContentElement = $('#todo-content');
-  const inprogressContentElement = $('#inprogress-content');
-  const doneContentElement = $('#done-content');
-
   cloneDataTasks.forEach((todo) => {
     if (todo.place === 'todo') {
-      const templateTodo = buildTemplateCard(todo);
-      htmlTodo += templateTodo;
+      htmlTodo += buildTemplateCard(todo);
     } else if (todo.place === 'inprogress') {
-      const templateTodo = buildTemplateCard(todo);
-      htmlInProgress += templateTodo;
+      htmlInProgress += buildTemplateCard(todo);
     } else if (todo.place === 'done') {
-      const templateTodo = buildTemplateCard(todo);
-      htmlDone += templateTodo;
+      htmlDone += buildTemplateCard(todo);
     }
   });
 
-  todoContentElement.innerHTML = htmlTodo;
-  inprogressContentElement.innerHTML = htmlInProgress;
-  doneContentElement.innerHTML = htmlDone;
+  $('#todo-content').innerHTML = htmlTodo;
+  $('#inprogress-content').innerHTML = htmlInProgress;
+  $('#done-content').innerHTML = htmlDone;
+
   showAmountTodoCardEveryGroups();
 }
 
