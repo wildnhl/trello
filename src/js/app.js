@@ -1,4 +1,4 @@
-import { $, $$ } from './dom';
+import { $, $$, showClock } from './dom';
 import { render } from './render';
 import { getData, setData } from './localstorage';
 import {
@@ -43,4 +43,6 @@ deleteAllDoneBtnElement.addEventListener(
   'click',
   handleClickDeleteAllDoneCardBtn
 );
+showClock();
+setInterval(showClock, 1000);
 export { dataTasks };

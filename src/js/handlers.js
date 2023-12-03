@@ -6,9 +6,7 @@ import { getData, setData } from './localstorage.js';
 import { Card } from './cardClass.js';
 
 const modalAdd = new bootstrap.Modal('#modal-add', {});
-console.log(modalAdd);
 function handleClickApplyAddElement() {
-  console.log(modalAdd);
   const titleAddField = $('#title-todo');
   const descriptionAddField = $('#description');
   const performerAddField = $('.select-performer');

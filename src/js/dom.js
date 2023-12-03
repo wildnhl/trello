@@ -17,4 +17,15 @@ function showAmountTodoCardEveryGroups() {
   $('#inprogress-count').textContent = inprogress;
   $('#done-count').textContent = done;
 }
-export { $, $$, showAmountTodoCardEveryGroups };
+
+function showClock() {
+  const now = new Date();
+  const hours = now.getHours() + '';
+  const minutes = now.getMinutes() + '';
+  const seconds = now.getSeconds() + '';
+  $('.clock').textContent = `${hours.padStart(2, '0')}:${minutes.padStart(
+    2,
+    '0'
+  )}:${seconds.padStart(2, '0')}`;
+}
+export { $, $$, showAmountTodoCardEveryGroups, showClock };
