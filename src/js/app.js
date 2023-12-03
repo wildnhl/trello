@@ -1,4 +1,3 @@
-import * as bootstrap from 'bootstrap';
 import { $, $$ } from './dom';
 import { render } from './render';
 import { getData, setData } from './localstorage';
@@ -6,9 +5,10 @@ import {
   handleClickDeleteCard,
   handleClickEditCard,
   handleClickApplyEditCard,
-  handleSubmitFormAddElement,
+  handleClickApplyAddElement,
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
+  handleClickApplyDeleteCard,
 } from './handlers.js';
 import { requestUsersList } from './requests.js';
 
@@ -22,8 +22,8 @@ if (getData('trello-todos') != null) {
 
 requestUsersList('https://jsonplaceholder.typicode.com/users');
 
-const formModalAddElement = $('#form-modal-add');
-formModalAddElement.addEventListener('submit', handleSubmitFormAddElement);
+const btnAddApplyElement = $('#btn-add-apply');
+btnAddApplyElement.addEventListener('click', handleClickApplyAddElement);
 
 const cardGroupElements = $$('.card-group');
 for (const item of cardGroupElements) {
@@ -35,7 +35,10 @@ for (const item of cardGroupElements) {
 const btnEditApplyElement = $('#apply-edit-btn');
 btnEditApplyElement.addEventListener('click', handleClickApplyEditCard);
 
-const deleteAllDoneBtnElement = $('#deleteAllDone');
+const btnDeleteCardApplyElement = $('#deleteSpecifCard');
+btnDeleteCardApplyElement.addEventListener('click', handleClickApplyDeleteCard);
+
+const deleteAllDoneBtnElement = $('#deleteAllDoneCards');
 deleteAllDoneBtnElement.addEventListener(
   'click',
   handleClickDeleteAllDoneCardBtn
