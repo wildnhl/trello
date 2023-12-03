@@ -3,31 +3,33 @@ import { $, $$ } from './dom';
 import * as bootstrap from 'bootstrap';
 import { render } from './render.js';
 import { getData, setData } from './localstorage.js';
+import { Card } from './cardClass.js';
 
 const modalAdd = new bootstrap.Modal('#modal-add', {});
+console.log(modalAdd);
+function handleClickApplyAddElement() {
+  console.log(modalAdd);
+  const titleAddField = $('#title-todo');
+  const descriptionAddField = $('#description');
+  const performerAddField = $('.select-performer');
 
-function handleSubmitFormAddElement(event) {
-  {
-    event.preventDefault();
+  const card = new Card(
+    titleAddField.value,
+    descriptionAddField.value,
+    performerAddField.value
+  );
 
-    const login = {};
-    const formData = new FormData($('#form-modal-add'));
-    formData.append('createdAt', new Date().toLocaleString());
-    formData.append('id', Date.now());
-    formData.append('place', 'todo');
-    for (let [key, value] of formData.entries()) {
-      login[key] = value;
-    }
-    if (login.performer === '' || login.title.trim() === '') {
-      alert('Need to choose title and performer');
-    } else {
-      modalAdd.hide();
-      dataTasks.push(login);
-      setData('trello-todos', dataTasks);
-      render(dataTasks);
-      $('#title-todo').value = '';
-      $('#description').value = '';
-    }
+  if (card.performer === '' || card.title.trim() === '') {
+    alert('Need to choose title and performer');
+  } else {
+    modalAdd.hide();
+    dataTasks.push(card);
+    setData('trello-todos', dataTasks);
+    render(dataTasks);
+
+    titleAddField.value = '';
+    descriptionAddField.value = '';
+    performerAddField.value = '';
   }
 }
 
@@ -35,30 +37,43 @@ let id = '';
 function handleClickEditCard(event) {
   if (event.target.dataset.id === 'btn-edit') {
     id = event.target.closest('.card').id;
-    const element = dataTasks.find((item) => item.id === id);
+    const element = dataTasks.find((item) => item.id == id);
     $('#title-todo-edit').value = element.title;
     $('#description-edit').value = element.description;
     $('.select-edit').value = element.performer;
   }
 }
 
+const editModal = new bootstrap.Modal('#editModal', {});
 function handleClickApplyEditCard() {
-  const element = dataTasks.find((item) => item.id === id);
-  element.title = $('#title-todo-edit').value;
-  element.description = $('#description-edit').value;
-  element.performer = $('.select-edit').value;
-  setData('trello-todos', dataTasks);
-  render(dataTasks);
+  const element = dataTasks.find((item) => item.id == id);
+  const titleEdit = $('#title-todo-edit');
+  const selectEdit = $('.select-edit');
+  const descriptionEdit = $('#description-edit');
+
+  if (titleEdit.value.trim() === '' || selectEdit.value === '') {
+    alert('Need to choose title and performer');
+  } else {
+    editModal.hide();
+    element.title = titleEdit.value;
+    element.description = descriptionEdit.value;
+    element.performer = selectEdit.value;
+    setData('trello-todos', dataTasks);
+    render(dataTasks);
+  }
 }
 
 function handleClickDeleteCard(event) {
   if (event.target.dataset.id === 'btn-delete') {
     id = event.target.closest('.card').id;
-    const element = dataTasks.findIndex((item) => item.id === id);
-    dataTasks.splice(element, 1);
-    setData('trello-todos', dataTasks);
-    render(dataTasks);
   }
+}
+
+function handleClickApplyDeleteCard() {
+  const element = dataTasks.findIndex((item) => item.id == id);
+  dataTasks.splice(element, 1);
+  setData('trello-todos', dataTasks);
+  render(dataTasks);
 }
 
 function handleClickDeleteAllDoneCardBtn() {
@@ -69,11 +84,12 @@ function handleClickDeleteAllDoneCardBtn() {
   render(getData('trello-todos'));
 }
 
-function handleClickSelectElement() {
+function handleClickSelectElement(event) {
   if (event.target.dataset.id === 'select-place') {
     const idCard = event.target.closest('.card').id;
-    const todo = dataTasks.find((item) => idCard === item.id);
+    const todo = dataTasks.find((item) => idCard == item.id);
     const inprogress = dataTasks.filter((item) => item.place === 'inprogress');
+
     if (inprogress.length === 6 && event.target.value === 'inprogress') {
       event.target.value = todo.place;
       alert('More than six in inrogress group');
@@ -89,7 +105,8 @@ export {
   handleClickDeleteCard,
   handleClickEditCard,
   handleClickApplyEditCard,
-  handleSubmitFormAddElement,
+  handleClickApplyAddElement,
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
+  handleClickApplyDeleteCard,
 };
