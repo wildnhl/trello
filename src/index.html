@@ -107,7 +107,7 @@
             <h1 class="modal-title fs-5" id="modal-addLabel">Add todo</h1>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close modal-add-close"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -128,13 +128,13 @@
               placeholder="Description"
             ></textarea>
             <select class="form-select select-performer" name="performer">
-              <option value="">Choose performer</option>
+              <option value="">No performer</option>
             </select>
           </div>
           <div class="modal-footer d-flex flex-nowrap">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-secondary modal-add-close"
               data-bs-dismiss="modal"
             >
               Close
@@ -144,6 +144,7 @@
               class="btn btn-primary"
               aria-label="Close"
               id="btn-add-apply"
+              data-bs-dismiss="modal"
             >
               Add
             </button>
@@ -151,7 +152,6 @@
         </div>
       </div>
     </div>
-
     <!--Edit Modal  -->
     <div
       class="modal fade"
@@ -194,7 +194,7 @@
               class="form-select select-edit select-performer"
               name="performer"
             >
-              <option value="">Choose performer</option>
+              <option value="">No performer</option>
             </select>
           </div>
           <div class="modal-footer">
@@ -205,14 +205,18 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="apply-edit-btn">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="apply-edit-btn"
+              data-bs-dismiss="modal"
+            >
               Apply
             </button>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Delete all warning modal -->
     <div
       class="modal fade"
@@ -226,9 +230,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteAllModalLabel">
-              Modal title
-            </h1>
+            <h1 class="modal-title fs-5" id="deleteAllModalLabel">WARNING!</h1>
             <button
               type="button"
               class="btn-close"
@@ -270,9 +272,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteSpecModalLabel">
-              Modal title
-            </h1>
+            <h1 class="modal-title fs-5" id="deleteSpecModalLabel">WARNING!</h1>
             <button
               type="button"
               class="btn-close"
@@ -296,6 +296,41 @@
               id="deleteSpecifCard"
             >
               Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Too much inprogress card modal -->
+    <div
+      class="modal fade"
+      id="tooMuchProgressModal"
+      aria-labelledby="tooMuchProgressModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="tooMuchProgressModalLabel">
+              WARNING!
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Too much cards in progress. Do something!
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Understand
             </button>
           </div>
         </div>

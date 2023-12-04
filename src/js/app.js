@@ -9,6 +9,7 @@ import {
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
   handleClickApplyDeleteCard,
+  handleClickCancelAddCard,
 } from './handlers.js';
 import { requestUsersList } from './requests.js';
 
@@ -24,6 +25,11 @@ requestUsersList('https://jsonplaceholder.typicode.com/users');
 
 const btnAddApplyElement = $('#btn-add-apply');
 btnAddApplyElement.addEventListener('click', handleClickApplyAddElement);
+
+const btnsCancelAddElemens = $$('.modal-add-close');
+for (const item of btnsCancelAddElemens) {
+  item.addEventListener('click', handleClickCancelAddCard);
+}
 
 const cardGroupElements = $$('.card-group');
 for (const item of cardGroupElements) {
@@ -43,6 +49,8 @@ deleteAllDoneBtnElement.addEventListener(
   'click',
   handleClickDeleteAllDoneCardBtn
 );
+
 showClock();
 setInterval(showClock, 1000);
+
 export { dataTasks };

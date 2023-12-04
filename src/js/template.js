@@ -6,34 +6,37 @@ function buildTemplateCard({
   place,
   performer,
 }) {
-  let selectTodo = '';
-  let selectInProgress = '';
-  let selectDone = '';
-  let background = '';
-  let none = '';
+  let selectTodo = '',
+    selectInProgress = '',
+    selectDone = '',
+    background = '',
+    noneDesc = '',
+    noneTitle = '',
+    nonePerform = '';
 
-  if (description.trim() === '') {
-    none = `style = 'display: none'`;
+  noneDesc = description === '' ? 'style = "display: none"' : '';
+  noneTitle = title === '' ? 'style = "display: none"' : '';
+  nonePerform = performer === '' ? 'style = "display: none"' : '';
+
+  switch (place) {
+    case 'todo':
+      selectTodo = 'selected';
+      background = 'bg-todo';
+      break;
+    case 'inprogress':
+      selectInProgress = 'selected';
+      background = 'bg-inprogress';
+      break;
+    case 'done':
+      selectDone = 'selected';
+      background = 'bg-done';
+      break;
   }
 
-  if (place === 'todo') {
-    selectTodo = 'selected';
-    background = 'bg-todo';
-  }
-
-  if (place === 'inprogress') {
-    selectInProgress = 'selected';
-    background = 'bg-inprogress';
-  }
-
-  if (place === 'done') {
-    selectDone = 'selected';
-    background = 'bg-done';
-  }
   return `
     <div class="card ${background} d-flex gap-2 flex-column p-1" id="${id}">
-      <h3 class="card__title">${title}</h3>
-      <p class="card__description" ${none}>${description}</p>
+      <h3 class="card__title" ${noneTitle}>${title}</h3>
+      <p class="card__description" ${noneDesc}>${description}</p>
       <div class="d-flex gap-2">
       <select class="form-select" name="fromto" data-id="select-place">
       <option value="todo" ${selectTodo}>Todo</option>
@@ -53,8 +56,8 @@ function buildTemplateCard({
               data-bs-target="#deleteSpecModal">Delete</button>
       </div>
       <div class="d-flex justify-content-between gap-2">
-        <h3 class="card-date">Person: ${performer}</h3>
-        <h3 class="card-date">${createdAt}</h3>
+        <h3 class="card-date" ${nonePerform}>Person: ${performer}</h3>
+        <h3 class="card-date ms-auto">${createdAt}</h3>
       </div>
     </div>
     `;

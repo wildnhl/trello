@@ -1,11 +1,12 @@
 import { dataTasks } from './app.js';
 import { $, $$ } from './dom';
-import * as bootstrap from 'bootstrap';
+import Modal from 'bootstrap/js/dist/modal';
 import { render } from './render.js';
 import { getData, setData } from './localstorage.js';
 import { Card } from './cardClass.js';
 
-const modalAdd = new bootstrap.Modal('#modal-add', {});
+let id = '';
+
 function handleClickApplyAddElement() {
   const titleAddField = $('#title-todo');
   const descriptionAddField = $('#description');
@@ -17,21 +18,23 @@ function handleClickApplyAddElement() {
     performerAddField.value
   );
 
-  if (card.performer === '' || card.title.trim() === '') {
-    alert('Need to choose title and performer');
-  } else {
-    modalAdd.hide();
-    dataTasks.push(card);
-    setData('trello-todos', dataTasks);
-    render(dataTasks);
+  dataTasks.push(card);
+  setData('trello-todos', dataTasks);
+  render(dataTasks);
 
-    titleAddField.value = '';
-    descriptionAddField.value = '';
-    performerAddField.value = '';
-  }
+  titleAddField.value = '';
+  descriptionAddField.value = '';
+  performerAddField.value = '';
 }
 
-let id = '';
+// clear fileds when modal add card was closed
+function handleClickCancelAddCard() {
+  $('#title-todo').value = '';
+  $('#description').value = '';
+  $('.select-performer').value = '';
+}
+
+// click btn to open modal edit specific card
 function handleClickEditCard(event) {
   if (event.target.dataset.id === 'btn-edit') {
     id = event.target.closest('.card').id;
@@ -42,24 +45,17 @@ function handleClickEditCard(event) {
   }
 }
 
-const editModal = new bootstrap.Modal('#editModal', {});
+// accept edited card changes
 function handleClickApplyEditCard() {
   const element = dataTasks.find((item) => item.id == id);
-  const titleEdit = $('#title-todo-edit');
-  const selectEdit = $('.select-edit');
-  const descriptionEdit = $('#description-edit');
-
-  if (titleEdit.value.trim() === '' || selectEdit.value === '') {
-    alert('Need to choose title and performer');
-  } else {
-    editModal.hide();
-    element.title = titleEdit.value;
-    element.description = descriptionEdit.value;
-    element.performer = selectEdit.value;
-    setData('trello-todos', dataTasks);
-    render(dataTasks);
-  }
+  element.title = $('#title-todo-edit').value;
+  element.description = $('#description-edit').value;
+  element.performer = $('.select-edit').value;
+  setData('trello-todos', dataTasks);
+  render(dataTasks);
 }
+
+// click btn to open modal accept delete specific card
 
 function handleClickDeleteCard(event) {
   if (event.target.dataset.id === 'btn-delete') {
@@ -67,6 +63,7 @@ function handleClickDeleteCard(event) {
   }
 }
 
+// accept delete specific card
 function handleClickApplyDeleteCard() {
   const element = dataTasks.findIndex((item) => item.id == id);
   dataTasks.splice(element, 1);
@@ -74,6 +71,7 @@ function handleClickApplyDeleteCard() {
   render(dataTasks);
 }
 
+// btn accept delete all card
 function handleClickDeleteAllDoneCardBtn() {
   setData(
     'trello-todos',
@@ -82,15 +80,16 @@ function handleClickDeleteAllDoneCardBtn() {
   render(getData('trello-todos'));
 }
 
+// toggle card group
 function handleClickSelectElement(event) {
   if (event.target.dataset.id === 'select-place') {
     const idCard = event.target.closest('.card').id;
     const todo = dataTasks.find((item) => idCard == item.id);
     const inprogress = dataTasks.filter((item) => item.place === 'inprogress');
 
-    if (inprogress.length === 6 && event.target.value === 'inprogress') {
+    if (event.target.value === 'inprogress' && inprogress.length === 6) {
       event.target.value = todo.place;
-      alert('More than six in inrogress group');
+      new Modal($('#tooMuchProgressModal')).show();
     } else {
       todo.place = event.target.value;
       setData('trello-todos', dataTasks);
@@ -107,4 +106,5 @@ export {
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
   handleClickApplyDeleteCard,
+  handleClickCancelAddCard,
 };

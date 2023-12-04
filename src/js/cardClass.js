@@ -3,8 +3,8 @@ class Card {
   id = Date.now();
   createdAt = new Date().toLocaleString();
   constructor(title, description, performer) {
-    this.title = title;
-    this.description = description;
+    this.title = title.trim();
+    this.description = description.trim();
     this.performer = performer;
   }
 }
