@@ -1,4 +1,3 @@
-import { getData } from './localstorage';
 function $(element) {
   return document.querySelector(element);
 }
@@ -6,16 +5,13 @@ function $$(element) {
   return document.querySelectorAll(element);
 }
 
-function showAmountTodoCardEveryGroups() {
-  const allTodos = getData('trello-todos');
-  const todo = allTodos.filter((item) => item.place === 'todo').length;
-  const inprogress = allTodos.filter(
-    (item) => item.place === 'inprogress'
-  ).length;
-  const done = allTodos.filter((item) => item.place === 'done').length;
-  $('#todo-count').textContent = todo;
-  $('#inprogress-count').textContent = inprogress;
-  $('#done-count').textContent = done;
+function showAmountTodoCardEveryGroups(array) {
+  const todo = array.filter((item) => item.place === 'todo');
+  const inprogress = array.filter((item) => item.place === 'inprogress');
+  const done = array.filter((item) => item.place === 'done');
+  $('#todo-count').textContent = todo.length;
+  $('#inprogress-count').textContent = inprogress.length;
+  $('#done-count').textContent = done.length;
 }
 
 function showClock() {

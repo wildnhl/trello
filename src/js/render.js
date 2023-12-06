@@ -8,12 +8,16 @@ function render(array) {
   let htmlDone = '';
 
   cloneDataTasks.forEach((todo) => {
-    if (todo.place === 'todo') {
-      htmlTodo += buildTemplateCard(todo);
-    } else if (todo.place === 'inprogress') {
-      htmlInProgress += buildTemplateCard(todo);
-    } else if (todo.place === 'done') {
-      htmlDone += buildTemplateCard(todo);
+    switch (todo.place) {
+      case 'todo':
+        htmlTodo += buildTemplateCard(todo);
+        break;
+      case 'inprogress':
+        htmlInProgress += buildTemplateCard(todo);
+        break;
+      case 'done':
+        htmlDone += buildTemplateCard(todo);
+        break;
     }
   });
 
@@ -21,7 +25,7 @@ function render(array) {
   $('#inprogress-content').innerHTML = htmlInProgress;
   $('#done-content').innerHTML = htmlDone;
 
-  showAmountTodoCardEveryGroups();
+  showAmountTodoCardEveryGroups(cloneDataTasks);
 }
 
 export { render };

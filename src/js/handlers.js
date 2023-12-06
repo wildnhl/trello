@@ -5,7 +5,7 @@ import { render } from './render.js';
 import { getData, setData } from './localstorage.js';
 import { Card } from './cardClass.js';
 
-let id = '';
+let idEvent;
 
 function handleClickApplyAddElement() {
   const titleAddField = $('#title-todo');
@@ -19,15 +19,15 @@ function handleClickApplyAddElement() {
   );
 
   dataTasks.push(card);
-  setData('trello-todos', dataTasks);
   render(dataTasks);
+  setData('trello-todos', dataTasks);
 
   titleAddField.value = '';
   descriptionAddField.value = '';
   performerAddField.value = '';
 }
 
-// clear fileds when modal add card was closed
+// clear fileds when modal add card was cancel
 function handleClickCancelAddCard() {
   $('#title-todo').value = '';
   $('#description').value = '';
@@ -37,8 +37,8 @@ function handleClickCancelAddCard() {
 // click btn to open modal edit specific card
 function handleClickEditCard(event) {
   if (event.target.dataset.id === 'btn-edit') {
-    id = event.target.closest('.card').id;
-    const element = dataTasks.find((item) => item.id == id);
+    idEvent = event.target.closest('.card').id;
+    const element = dataTasks.find((item) => item.id == idEvent);
     $('#title-todo-edit').value = element.title;
     $('#description-edit').value = element.description;
     $('.select-edit').value = element.performer;
@@ -47,37 +47,37 @@ function handleClickEditCard(event) {
 
 // accept edited card changes
 function handleClickApplyEditCard() {
-  const element = dataTasks.find((item) => item.id == id);
+  const element = dataTasks.find((item) => item.id == idEvent);
   element.title = $('#title-todo-edit').value;
   element.description = $('#description-edit').value;
   element.performer = $('.select-edit').value;
-  setData('trello-todos', dataTasks);
   render(dataTasks);
+  setData('trello-todos', dataTasks);
 }
 
 // click btn to open modal accept delete specific card
 
 function handleClickDeleteCard(event) {
   if (event.target.dataset.id === 'btn-delete') {
-    id = event.target.closest('.card').id;
+    idEvent = event.target.closest('.card').id;
   }
 }
 
 // accept delete specific card
 function handleClickApplyDeleteCard() {
-  const element = dataTasks.findIndex((item) => item.id == id);
+  const element = dataTasks.findIndex((item) => item.id == idEvent);
   dataTasks.splice(element, 1);
-  setData('trello-todos', dataTasks);
   render(dataTasks);
+  setData('trello-todos', dataTasks);
 }
 
 // btn accept delete all card
 function handleClickDeleteAllDoneCardBtn() {
-  setData(
-    'trello-todos',
-    dataTasks.filter((item) => item.place !== 'done')
-  );
-  render(getData('trello-todos'));
+  const filterData = dataTasks.filter((item) => item.place !== 'done');
+  dataTasks.splice(0, dataTasks.length);
+  dataTasks.push(...filterData);
+  render(dataTasks);
+  setData('trello-todos', dataTasks);
 }
 
 // toggle card group
@@ -92,8 +92,8 @@ function handleClickSelectElement(event) {
       new Modal($('#tooMuchProgressModal')).show();
     } else {
       todo.place = event.target.value;
-      setData('trello-todos', dataTasks);
       render(dataTasks);
+      setData('trello-todos', dataTasks);
     }
   }
 }
