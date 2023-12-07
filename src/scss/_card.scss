@@ -34,18 +34,18 @@
   background: #5bd9a3;
 }
 
-.card-group__button.bg-todo {
-  &:hover {
-    background-color: #4eb789;
-  }
-}
-
 .bg-inprogress {
   background: #d8ddd7;
 }
 
 .bg-done {
   background: #5bc3d9;
+}
+
+.card-group__button.bg-todo {
+  &:hover {
+    background-color: #4eb789;
+  }
 }
 
 .card-group__button.bg-done {

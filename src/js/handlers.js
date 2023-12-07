@@ -49,7 +49,7 @@ function handleClickEditCard(event) {
 
 // accept edited card changes
 const modalEdit = new Modal($('#editModal'));
-function handleClickApplyEditCard(event) {
+function handleSubmitApplyEditCard(event) {
   event.preventDefault();
   const element = dataTasks.find((item) => item.id == idEvent);
   element.title = $('#title-todo-edit').value;
@@ -106,7 +106,7 @@ function handleClickSelectElement(event) {
 export {
   handleClickDeleteCard,
   handleClickEditCard,
-  handleClickApplyEditCard,
+  handleSubmitApplyEditCard,
   handleSumbitApplyAddElement,
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,

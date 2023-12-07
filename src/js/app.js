@@ -1,10 +1,10 @@
-import { $, $$, showClock } from './dom';
+import { $, $$, showRealTime } from './dom';
 import { render } from './render';
 import { getData, setData } from './localstorage';
 import {
   handleClickDeleteCard,
   handleClickEditCard,
-  handleClickApplyEditCard,
+  handleSubmitApplyEditCard,
   handleSumbitApplyAddElement,
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
@@ -23,14 +23,17 @@ if (getData('trello-todos') != null) {
 
 requestUsersList('https://jsonplaceholder.typicode.com/users');
 
-const formModalAdd = $('#form-modal-add');
+showRealTime();
+setInterval(showRealTime, 1000);
+
+const formModalAdd = $('#formModalAdd');
 formModalAdd.addEventListener('submit', handleSumbitApplyAddElement);
 
 const formModalEdit = $('#formModalEdit');
-formModalEdit.addEventListener('submit', handleClickApplyEditCard);
+formModalEdit.addEventListener('submit', handleSubmitApplyEditCard);
 
-const btnsCancelAddElemens = $$('.modal-add-close');
-for (const item of btnsCancelAddElemens) {
+const btnsCancelAddElements = $$('.modal-add-close');
+for (const item of btnsCancelAddElements) {
   item.addEventListener('click', handleClickCancelAddCard);
 }
 
@@ -49,8 +52,5 @@ deleteAllDoneBtnElement.addEventListener(
   'click',
   handleClickDeleteAllDoneCardBtn
 );
-
-showClock();
-setInterval(showClock, 1000);
 
 export { dataTasks };
