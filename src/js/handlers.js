@@ -6,8 +6,10 @@ import { getData, setData } from './localstorage.js';
 import { Card } from './cardClass.js';
 
 let idEvent;
+const modalAdd = new Modal($('#modal-add'));
+function handleSumbitApplyAddElement(event) {
+  event.preventDefault();
 
-function handleClickApplyAddElement() {
   const titleAddField = $('#title-todo');
   const descriptionAddField = $('#description');
   const performerAddField = $('.select-performer');
@@ -17,10 +19,10 @@ function handleClickApplyAddElement() {
     descriptionAddField.value,
     performerAddField.value
   );
-
   dataTasks.push(card);
   render(dataTasks);
   setData('trello-todos', dataTasks);
+  modalAdd.hide();
 
   titleAddField.value = '';
   descriptionAddField.value = '';
@@ -46,13 +48,16 @@ function handleClickEditCard(event) {
 }
 
 // accept edited card changes
-function handleClickApplyEditCard() {
+const modalEdit = new Modal($('#editModal'));
+function handleClickApplyEditCard(event) {
+  event.preventDefault();
   const element = dataTasks.find((item) => item.id == idEvent);
   element.title = $('#title-todo-edit').value;
   element.description = $('#description-edit').value;
   element.performer = $('.select-edit').value;
   render(dataTasks);
   setData('trello-todos', dataTasks);
+  modalEdit.hide();
 }
 
 // click btn to open modal accept delete specific card
@@ -102,7 +107,7 @@ export {
   handleClickDeleteCard,
   handleClickEditCard,
   handleClickApplyEditCard,
-  handleClickApplyAddElement,
+  handleSumbitApplyAddElement,
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
   handleClickApplyDeleteCard,

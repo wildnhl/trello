@@ -5,7 +5,7 @@ import {
   handleClickDeleteCard,
   handleClickEditCard,
   handleClickApplyEditCard,
-  handleClickApplyAddElement,
+  handleSumbitApplyAddElement,
   handleClickDeleteAllDoneCardBtn,
   handleClickSelectElement,
   handleClickApplyDeleteCard,
@@ -23,8 +23,11 @@ if (getData('trello-todos') != null) {
 
 requestUsersList('https://jsonplaceholder.typicode.com/users');
 
-const btnAddApplyElement = $('#btn-add-apply');
-btnAddApplyElement.addEventListener('click', handleClickApplyAddElement);
+const formModalAdd = $('#form-modal-add');
+formModalAdd.addEventListener('submit', handleSumbitApplyAddElement);
+
+const formModalEdit = $('#formModalEdit');
+formModalEdit.addEventListener('submit', handleClickApplyEditCard);
 
 const btnsCancelAddElemens = $$('.modal-add-close');
 for (const item of btnsCancelAddElemens) {
@@ -37,9 +40,6 @@ for (const item of cardGroupElements) {
   item.addEventListener('click', handleClickDeleteCard);
   item.addEventListener('change', handleClickSelectElement);
 }
-
-const btnEditApplyElement = $('#apply-edit-btn');
-btnEditApplyElement.addEventListener('click', handleClickApplyEditCard);
 
 const btnDeleteCardApplyElement = $('#deleteSpecifCard');
 btnDeleteCardApplyElement.addEventListener('click', handleClickApplyDeleteCard);

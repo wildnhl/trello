@@ -20,7 +20,7 @@
       <main class="container-fluid d-flex flex-column">
         <div class="main-wrapper d-flex gap-2 p-3 pb-0">
           <section
-            class="card-group d-flex flex-column w-25 p-2 flex-grow-1 gap-2"
+            class="card-group flex-column w-25 p-2 flex-grow-1 gap-2"
             id="todo"
           >
             <div
@@ -46,7 +46,7 @@
             </button>
           </section>
           <section
-            class="card-group d-flex flex-column w-25 p-2 flex-grow-1 gap-2"
+            class="card-group flex-column w-25 p-2 flex-grow-1 gap-2 hide"
             id="inprogress"
           >
             <div
@@ -63,7 +63,7 @@
             <!--inprogress card group body -->
           </section>
           <section
-            class="card-group d-flex flex-column w-25 p-2 flex-grow-1 gap-2"
+            class="card-group flex-column w-25 p-2 flex-grow-1 gap-2 hide"
             id="done"
           >
             <div
@@ -102,7 +102,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" id="form-modal-add">
+        <form class="modal-content" id="form-modal-add">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="modal-addLabel">Add todo</h1>
             <button
@@ -119,6 +119,7 @@
               name="title"
               placeholder="Title"
               id="title-todo"
+              required
             />
             <textarea
               type="text"
@@ -144,12 +145,11 @@
               class="btn btn-primary"
               aria-label="Close"
               id="btn-add-apply"
-              data-bs-dismiss="modal"
             >
               Add
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <!--Edit Modal  -->
@@ -163,7 +163,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <form class="modal-content" id="formModalEdit">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="staticBackdropLabel">
               Edit modal
@@ -182,6 +182,7 @@
               name="title"
               placeholder="Title"
               id="title-todo-edit"
+              required
             />
             <textarea
               type="text"
@@ -205,16 +206,11 @@
             >
               Close
             </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              id="apply-edit-btn"
-              data-bs-dismiss="modal"
-            >
+            <button type="submit" class="btn btn-primary" id="apply-edit-btn">
               Apply
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
     <!-- Delete all warning modal -->
