@@ -5,7 +5,6 @@ import { render } from './render.js';
 import { getData, setData } from './localstorage.js';
 import { Card } from './cardClass.js';
 
-let idEvent;
 const modalAdd = new Modal($('#modal-add'));
 function handleSumbitApplyAddElement(event) {
   event.preventDefault();
@@ -36,14 +35,15 @@ function handleClickCancelAddCard() {
   $('.select-performer').value = '';
 }
 
+let idCardEvent;
 // click btn to open modal edit specific card
 function handleClickEditCard(event) {
   if (event.target.dataset.id === 'btn-edit') {
-    idEvent = event.target.closest('.card').id;
-    const element = dataTasks.find((item) => item.id == idEvent);
-    $('#title-todo-edit').value = element.title;
-    $('#description-edit').value = element.description;
-    $('.select-edit').value = element.performer;
+    idCardEvent = event.target.closest('.card').id;
+    const card = dataTasks.find((item) => item.id == idCardEvent);
+    $('#title-todo-edit').value = card.title;
+    $('#description-edit').value = card.description;
+    $('.select-edit').value = card.performer;
   }
 }
 
@@ -51,10 +51,10 @@ function handleClickEditCard(event) {
 const modalEdit = new Modal($('#editModal'));
 function handleSubmitApplyEditCard(event) {
   event.preventDefault();
-  const element = dataTasks.find((item) => item.id == idEvent);
-  element.title = $('#title-todo-edit').value;
-  element.description = $('#description-edit').value;
-  element.performer = $('.select-edit').value;
+  const card = dataTasks.find((item) => item.id == idCardEvent);
+  card.title = $('#title-todo-edit').value;
+  card.description = $('#description-edit').value;
+  card.performer = $('.select-edit').value;
   render(dataTasks);
   setData('trello-todos', dataTasks);
   modalEdit.hide();
@@ -64,23 +64,23 @@ function handleSubmitApplyEditCard(event) {
 
 function handleClickDeleteCard(event) {
   if (event.target.dataset.id === 'btn-delete') {
-    idEvent = event.target.closest('.card').id;
+    idCardEvent = event.target.closest('.card').id;
   }
 }
 
 // accept delete specific card
 function handleClickApplyDeleteCard() {
-  const element = dataTasks.findIndex((item) => item.id == idEvent);
-  dataTasks.splice(element, 1);
+  const card = dataTasks.findIndex((item) => item.id == idCardEvent);
+  dataTasks.splice(card, 1);
   render(dataTasks);
   setData('trello-todos', dataTasks);
 }
 
 // btn accept delete all card
 function handleClickDeleteAllDoneCardBtn() {
-  const filterData = dataTasks.filter((item) => item.place !== 'done');
-  dataTasks.splice(0, dataTasks.length);
-  dataTasks.push(...filterData);
+  const noDoneArray = dataTasks.filter((item) => item.place !== 'done');
+  dataTasks.length = 0;
+  dataTasks.push(...noDoneArray);
   render(dataTasks);
   setData('trello-todos', dataTasks);
 }
