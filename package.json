@@ -5,6 +5,7 @@
   "description": "",
   "scripts": {
     "dev": "parcel --open",
+    "devDeploy": "parcel",
     "build": "parcel build"
   },
   "author": "Aliaksei",
